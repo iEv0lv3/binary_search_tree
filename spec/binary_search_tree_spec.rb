@@ -19,7 +19,7 @@ describe 'Binary search tree' do
     50.times { nodes.push(Node.new(numbers.pop)) }
 
     nodes.each do |node|
-      @bst.find_home(node, @bst.root)
+      @bst.find_home(node)
     end
   end
 end
