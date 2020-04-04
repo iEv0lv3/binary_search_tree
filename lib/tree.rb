@@ -45,4 +45,16 @@ class Tree
   def search_type(search)
     search.class == Node ? search.data : search
   end
+
+  def max(current_max = 0, node = @root)
+    return current_max if node.nil?
+
+    if current_max > node.data
+      max(current_max, node.left_branch)
+    elsif current_max < node.data
+      max(node.data, node.right_branch)
+    else
+      current_max
+    end
+  end
 end
