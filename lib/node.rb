@@ -1,8 +1,9 @@
 class Node
-  attr_accessor :data,
-                :right_branch,
+  attr_accessor :right_branch,
                 :left_branch,
                 :depth
+
+  attr_reader   :data
 
   def initialize(data)
     @data = data
@@ -11,9 +12,9 @@ class Node
     @depth = 0
   end
 
-  def node_step(node, parent_node)
+  def node_placement(node, parent_node)
     node.depth += 1
-    if direction(node, parent_node) == 'right'
+    if node.data > parent_node.data
       parent_node.right(node, parent_node)
     else
       parent_node.left(node, parent_node)
@@ -24,7 +25,7 @@ class Node
     if parent_node.right_branch.nil?
       parent_node.right_branch = node
     else
-      node_step(node, parent_node.right_branch)
+      node_placement(node, parent_node.right_branch)
     end
   end
 
@@ -32,15 +33,7 @@ class Node
     if parent_node.left_branch.nil?
       parent_node.left_branch = node
     else
-      node_step(node, parent_node.left_branch)
-    end
-  end
-
-  def direction(node, parent_node)
-    if node.data > parent_node.data
-      'right'
-    else
-      'left'
+      node_placement(node, parent_node.left_branch)
     end
   end
 end
