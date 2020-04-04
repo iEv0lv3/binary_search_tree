@@ -64,4 +64,14 @@ describe 'Binary search tree' do
     expect(tree.depth_of(5)).to eq(0)
     expect(tree.depth_of(node)).to eq(2)
   end
+
+  it 'can find max data value' do
+    tree = Tree.new(Node.new(5))
+    tree.insert(Node.new(3))
+    tree.insert(Node.new(4))
+    tree.insert(Node.new(7))
+    tree.insert(Node.new(6))
+
+    expect(tree.max).to eq(7)
+  end
 end
