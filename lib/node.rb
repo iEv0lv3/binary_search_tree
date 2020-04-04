@@ -14,16 +14,11 @@ class Node
 
   def node_placement(node, parent_node)
     node.depth += 1
-    # Recursively call node_placement in place of parent_node.right
     if node.data > parent_node.data
       parent_node.right(node, parent_node)
     else
       parent_node.left(node, parent_node)
     end
-  end
-
-  def place_node(node, parent_node)
-    # This mehtod will determine if a node is placed
   end
 
   def right(node, parent_node)
