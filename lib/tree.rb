@@ -23,4 +23,13 @@ class Tree
       { 'true' => node }
     end
   end
+
+  def depth_of(data)
+    node = include?(data)
+    if node == false
+      'Data not found.'
+    else
+      node['true'].depth
+    end
+  end
 end

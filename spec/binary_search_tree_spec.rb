@@ -46,4 +46,18 @@ describe 'Binary search tree' do
     expect(tree.include?(6)).to eq({ 'true' => node1 })
     expect(tree.include?(5)).to eq({ 'true' => tree.root })
   end
+
+  it 'can find depth of data' do
+    tree = Tree.new(Node.new(5))
+    tree.insert(Node.new(3))
+    tree.insert(Node.new(4))
+    tree.insert(Node.new(7))
+    tree.insert(Node.new(6))
+
+    expect(tree.depth_of(4)).to eq(2)
+    expect(tree.depth_of(17)).to eq('Data not found.')
+    expect(tree.depth_of(6)).to eq(2)
+    expect(tree.depth_of(7)).to eq(1)
+    expect(tree.depth_of(5)).to eq(0)
+  end
 end
