@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'node'
 
 class Tree
@@ -7,29 +9,40 @@ class Tree
     @root = data
   end
 
-  def insert(node)
+  def insert(node_input)
+    node = create_node(node_input)
     @root = node if @root.nil?
-    @root.node_step(node, @root)
+    @root.node_placement(node, @root)
   end
 
-  def include?(search, node = @root)
+  def create_node(node)
+    node.class == Node ? node : Node.new(node)
+  end
+
+  def include?(search_input)
+    search = search_type(search_input)
+    tree_search(search)
+  end
+
+  def tree_search(search, node = @root)
     return false if node.nil?
 
     if search < node.data
-      include?(search, node.left_branch)
+      tree_search(search, node.left_branch)
     elsif search > node.data
-      include?(search, node.right_branch)
+      tree_search(search, node.right_branch)
     else
       { 'true' => node }
     end
   end
 
-  def depth_of(data)
-    node = include?(data)
-    if node == false
-      'Data not found.'
-    else
-      node['true'].depth
-    end
+  def depth_of(search_input)
+    search = search_type(search_input)
+    node = tree_search(search)
+    node == false ? 'Data not found.' : node['true'].depth
+  end
+
+  def search_type(search)
+    search.class == Node ? search.data : search
   end
 end
