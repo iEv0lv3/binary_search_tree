@@ -33,6 +33,9 @@ describe 'Binary search tree' do
 
     node4 = tree.insert(Node.new(6))
     expect(tree.root.right_branch.left_branch).to eq(node4)
+
+    node5 = tree.insert(2)
+    expect(tree.root.left_branch.left_branch).to eq(node5)
   end
 
   it 'tree can be searched' do
@@ -50,7 +53,7 @@ describe 'Binary search tree' do
   it 'can find depth of data' do
     tree = Tree.new(Node.new(5))
     tree.insert(Node.new(3))
-    tree.insert(Node.new(4))
+    node = tree.insert(Node.new(4))
     tree.insert(Node.new(7))
     tree.insert(Node.new(6))
 
@@ -59,5 +62,6 @@ describe 'Binary search tree' do
     expect(tree.depth_of(6)).to eq(2)
     expect(tree.depth_of(7)).to eq(1)
     expect(tree.depth_of(5)).to eq(0)
+    expect(tree.depth_of(node)).to eq(2)
   end
 end
