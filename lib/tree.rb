@@ -57,4 +57,17 @@ class Tree
       current_max
     end
   end
+
+  def min(current_min = nil, node = @root)
+    return current_min if node.nil?
+
+    current_min = @root.data if current_min.nil?
+    if current_min <= node.data
+      min(current_min, node.left_branch)
+    elsif current_min > node.data
+      min(node.data, node.left_branch)
+    else
+      current_min
+    end
+  end
 end
