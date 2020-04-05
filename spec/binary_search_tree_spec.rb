@@ -1,5 +1,4 @@
 require 'rspec'
-require 'pry'
 require './lib/tree'
 require './lib/node'
 
@@ -50,7 +49,7 @@ describe 'Binary search tree' do
     expect(tree.include?(5)).to eq({ 'true' => tree.root })
   end
 
-  it 'can find depth of data' do
+  it 'find .depth_of data' do
     tree = Tree.new(Node.new(5))
     tree.insert(Node.new(3))
     node = tree.insert(Node.new(4))
@@ -65,7 +64,7 @@ describe 'Binary search tree' do
     expect(tree.depth_of(node)).to eq(2)
   end
 
-  it 'can find max data value' do
+  it 'find .max data value' do
     tree = Tree.new(Node.new(5))
     tree.insert(Node.new(3))
     tree.insert(Node.new(4))
@@ -73,5 +72,15 @@ describe 'Binary search tree' do
     tree.insert(Node.new(6))
 
     expect(tree.max).to eq(7)
+  end
+
+  it 'find .min data value' do
+    tree = Tree.new(Node.new(5))
+    tree.insert(Node.new(3))
+    tree.insert(Node.new(4))
+    tree.insert(Node.new(7))
+    tree.insert(Node.new(6))
+
+    expect(tree.min).to eq(3)
   end
 end
